@@ -32,23 +32,23 @@ void ETH_Reset(void)
     vTaskDelay(1);
     // 再拉高
     HAL_GPIO_WritePin(W5500_RST_GPIO_Port, W5500_RST_Pin, GPIO_PIN_SET);
-    printf("以太网W5500复位完成!\r\n");
+    debug_printfln("以太网W5500复位完成!\r\n");
 }
 
 void ETH_SetMac(uint8_t mac[])
 {
-    printf("开始设置 MAC 地址...\n");
+    debug_printfln("开始设置 MAC 地址...\n");
     // 以调库的方式进行寄存器设置
     setSHAR(mac);
-    printf("MAC 地址设置完成！ %X.%X.%X.%X.%X.%X\n", mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
+    debug_printfln("MAC 地址设置完成！ %X.%X.%X.%X.%X.%X\n", mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
 }
 
 void ETH_SetIP(uint8_t ip[])
 {
-    printf("开始设置 IP 地址...\n");
+    debug_printfln("开始设置 IP 地址...\n");
     // 以调库的方式进行寄存器设置 IP
     setSIPR(ip);
-    printf("IP 地址设置完成！ %d.%d.%d.%d\n", ip[0], ip[1], ip[2], ip[3]);
+    debug_printfln("IP 地址设置完成！ %d.%d.%d.%d\n", ip[0], ip[1], ip[2], ip[3]);
     // 设置子网掩码
     setSUBR(submask);
     // 设置网关

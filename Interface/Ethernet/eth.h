@@ -3,7 +3,7 @@
 
 #include "w5500.h"
 #include <stdio.h>
-
+#include "debug.h"
 // ≥ı ºªØ
 void ETH_Init(void);
 
