@@ -9,4 +9,5 @@ typedef enum {
     COMMON_OTHER = 0x02U
 } CommonStatus;
 
+
 #endif /* __COM_TYPES_H__ */

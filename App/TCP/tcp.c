@@ -10,6 +10,7 @@ uint16_t serverPort = 8888;
 // 启动TCP客户端，放到主循环里执行，只有建立连接成功才返回OK
 CommonStatus TCP_ClientStart(void)
 {
+    //当前为客户端
     role = CLIENT;
 
     // 1. 获取当前socket的状态
@@ -34,7 +35,7 @@ CommonStatus TCP_ClientStart(void)
             printf("客户端连接服务器失败！\n");
         }
     } else if (status == SOCK_CLOSE_WAIT) {
-        printf("失去与服务端的连接，即将重新打开socket...\n");
+        printf("失去与服务端的连接,即将重新打开socket...\n");
         // 客户端断开连接，直接关闭（之后再重新打开）
         close(SN);
     } else if (status == SOCK_ESTABLISHED) {

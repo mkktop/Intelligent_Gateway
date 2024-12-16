@@ -57,6 +57,8 @@ extern void xPortSysTickHandler( void );
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
+extern UART_HandleTypeDef huart2;
+extern UART_HandleTypeDef huart3;
 extern TIM_HandleTypeDef htim2;
 
 /* USER CODE BEGIN EV */
@@ -144,6 +146,15 @@ void UsageFault_Handler(void)
 /**
   * @brief This function handles System service call via SWI instruction.
   */
+void SVC_Handler(void)
+{
+  /* USER CODE BEGIN SVCall_IRQn 0 */
+
+  /* USER CODE END SVCall_IRQn 0 */
+  /* USER CODE BEGIN SVCall_IRQn 1 */
+
+  /* USER CODE END SVCall_IRQn 1 */
+}
 
 /**
   * @brief This function handles Debug monitor.
@@ -161,6 +172,15 @@ void DebugMon_Handler(void)
 /**
   * @brief This function handles Pendable request for system service.
   */
+void PendSV_Handler(void)
+{
+  /* USER CODE BEGIN PendSV_IRQn 0 */
+
+  /* USER CODE END PendSV_IRQn 0 */
+  /* USER CODE BEGIN PendSV_IRQn 1 */
+
+  /* USER CODE END PendSV_IRQn 1 */
+}
 
 /**
   * @brief This function handles System tick timer.
@@ -199,6 +219,43 @@ void TIM2_IRQHandler(void)
   /* USER CODE END TIM2_IRQn 1 */
 }
 
+/**
+  * @brief This function handles USART2 global interrupt.
+  */
+void USART2_IRQHandler(void)
+{
+  /* USER CODE BEGIN USART2_IRQn 0 */
+
+  /* USER CODE END USART2_IRQn 0 */
+  HAL_UART_IRQHandler(&huart2);
+  /* USER CODE BEGIN USART2_IRQn 1 */
+
+  /* USER CODE END USART2_IRQn 1 */
+}
+
+/**
+  * @brief This function handles USART3 global interrupt.
+  */
+void USART3_IRQHandler(void)
+{
+  /* USER CODE BEGIN USART3_IRQn 0 */
+
+  /* USER CODE END USART3_IRQn 0 */
+  HAL_UART_IRQHandler(&huart3);
+  /* USER CODE BEGIN USART3_IRQn 1 */
+
+  /* USER CODE END USART3_IRQn 1 */
+}
+
 /* USER CODE BEGIN 1 */
+extern void TW51_UartCallback(uint16_t size);
+void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
+{
+  if (huart->Instance == USART3)
+  {
+    TW51_UartCallback(Size);
+  }
+  
+}
 
 /* USER CODE END 1 */

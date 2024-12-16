@@ -7,7 +7,7 @@ void TCP_Task(void *arg);
 #define TCP_TASK_STACK    128
 #define TCP_TASK_PRIORITY 5
 TaskHandle_t TCP_Task_Handler;
-#define TCP_TASK_PERIOD 100
+#define TCP_TASK_PERIOD 2000
 
 void FreeRTOS_Task_Start(void)
 {
