@@ -1,5 +1,4 @@
 #include "FreeRTOS_Task.h"
-#include "TCP.h"
 
 uint8_t buff[100];
 uint16_t bufflen;
@@ -99,7 +98,8 @@ void KEY_Task(void *arg)
                 display_all(carbon);
                 break;
             case 5:
-                printf("key5\r\n");
+                LED1_Toggle();
+                LED2_Toggle();
                 break;
             default:
                 break;
