@@ -6,7 +6,7 @@ uint8_t rxSize;
 void TW51_Init(void)
 {
     // 1.初始化串口3
-    MX_USART3_UART_Init();
+   // MX_USART3_UART_Init();
     // 2.配置中断方式接收变长数据
     HAL_UARTEx_ReceiveToIdle_IT(&huart3, rxBuff, TW51_INFO_BUFF_SIZE);
 }

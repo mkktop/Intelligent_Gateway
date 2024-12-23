@@ -1,6 +1,6 @@
 #include "oled.h"
 
- uint8_t Int_OLED_Font[][16] =
+const uint8_t Int_OLED_Font[][16] =
     {
         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, //  0
@@ -361,13 +361,13 @@ void OLED_ShowStr(uint8_t x, uint8_t y, uint8_t *str)
     OLED_SetPointer(2 * y, 8 * x);
     // 写入显示数据
     for (uint8_t i = 0; str[i] != 0 && i < 16 - x; i++) {
-        OLED_WriteData(Int_OLED_Font[str[i] - 32], 8);
+        OLED_WriteData((uint8_t*)Int_OLED_Font[str[i] - 32], 8);
     }
     // 写下半部分
     // 设置起始位置
     OLED_SetPointer(2 * y + 1, 8 * x);
     for (uint8_t i = 0; str[i] != 0 && i < 16 - x; i++) {
-        OLED_WriteData(Int_OLED_Font[str[i] - 32] + 8, 8);
+        OLED_WriteData((uint8_t*)Int_OLED_Font[str[i] - 32] + 8, 8);
     }
 }
 

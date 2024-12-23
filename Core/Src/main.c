@@ -97,17 +97,14 @@ int main(void)
   MX_USART3_UART_Init();
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
-    //FreeRTOS_Task_Start();
+  printf("Hello World!\r\n");
+    FreeRTOS_Task_Start();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   //ETH_Init();
-  OLED_Init();
-  OLED_Clear();
-  OLED_ShowStr(0, 0, (uint8_t *)"Hello World!");
-  OLED_ShowStr(0, 2, (uint8_t *)"huang sea");
-  OLED_ShowNum(0, 1, 12345678);
+
     while (1) {
     /* USER CODE END WHILE */
 
