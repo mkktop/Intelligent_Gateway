@@ -4,7 +4,7 @@
 uint8_t role;
 
 // 定义好要连接的服务器IP和端口号
-uint8_t serverIP[]  = {192, 168, 34, 76};
+uint8_t serverIP[]  = {192, 168, 34, 36};
 uint16_t serverPort = 8888;
 
 // 启动TCP客户端，放到主循环里执行，只有建立连接成功才返回OK
@@ -19,7 +19,7 @@ CommonStatus TCP_ClientStart(void)
     // 2. 根据状态决定要执行的命令
     if (status == SOCK_CLOSED) {
         // 打开socket，定义好协议TCP，端口9999，根据返回值是否是socket号判断是否成功
-        uint8_t n = socket(SN, Sn_MR_TCP, 9999, SF_TCP_NODELAY);
+        uint8_t n = socket(SN, Sn_MR_TCP, 8888, SF_TCP_NODELAY);
 
         if (n == SN) {
             printf("socket %d 打开成功！\n", SN);
@@ -39,6 +39,7 @@ CommonStatus TCP_ClientStart(void)
         // 客户端断开连接，直接关闭（之后再重新打开）
         close(SN);
     } else if (status == SOCK_ESTABLISHED) {
+        printf("客户端保持连接\n");
         return COMMON_OK;
     }
 

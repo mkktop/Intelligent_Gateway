@@ -7,6 +7,7 @@
 #include "tw51.h"
 #include "voice.h"
 #include "display.h"
+#include "TCP.h"
 void FreeRTOS_Task_Start(void);
 
 #endif /* __FREERTOS_TASK_H__ */
