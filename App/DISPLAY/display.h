@@ -11,4 +11,6 @@ void display_temperature(Carbon_Dioxide carbon);
 void display_humidity(Carbon_Dioxide carbon);
 
 void display_co2(Carbon_Dioxide carbon);
+
+void display_all(Carbon_Dioxide carbon);
 #endif /* __DISPLAY_H__ */
