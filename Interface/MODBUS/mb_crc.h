@@ -1,3 +1,4 @@
+//CRC£®—≠ª∑»ﬂ”‡–£—È£©
 #ifndef __MB_CRC16_H
 #define __MB_CRC16_H
 #include "stdint.h"

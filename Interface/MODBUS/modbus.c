@@ -1,3 +1,4 @@
+//modbus协议层
 #include "modbus.h"
 
 uint8_t MODBUS_rxBuff[MODBUS_INFO_BUFF_SIZE];
@@ -33,16 +34,27 @@ void Modbus_ReadData(uint8_t data[], uint16_t *datalen)
     MODBUS_rxSize = 0;
 }
 
+/// @brief 获取二氧化碳浓度，传递给二氧化碳结构体
+/// @param carbon 二氧化碳结构体
 void Modbus_ReadCO2(Carbon_Dioxide *carbon)
 {
+    // 使能发送引脚
     HAL_GPIO_WritePin(TR_485_GPIO_Port, TR_485_Pin, GPIO_PIN_SET);
+     // 地址码 功能码 起始地址(2字节) 读取长度(2字节) crc校验(2字节)
     uint8_t buff[] = {0x01, 0x03, 0x00, 0x00, 0x00, 0x01, 0x84, 0x0A};
     HAL_UART_Transmit(&huart2, buff, 8, 1000);
+    // 使能接收引脚
     HAL_GPIO_WritePin(TR_485_GPIO_Port, TR_485_Pin, GPIO_PIN_RESET);
     uint8_t rx_buff[30] = {0};
     uint16_t rx_len     = 0;
+    // 超时机制
+    uint16_t count = 0;
     while (1) {
         Modbus_ReadData(rx_buff, &rx_len);
+        count++;
+        if (count > 60000) {
+            return;
+        }
         if (rx_len > 0) {
             break;
         }
@@ -55,6 +67,7 @@ void Modbus_ReadCO2(Carbon_Dioxide *carbon)
     } else if (rx_buff[0] == MODBUS_ADDR) {
         crc = mb_crc16(rx_buff, rx_len - 2);
     }
+    // 校验码检验
     crcL = crc >> 8;
     printf("crcL:%d\n", crcL);
     crcH = crc & 0xFF;
@@ -62,6 +75,7 @@ void Modbus_ReadCO2(Carbon_Dioxide *carbon)
     if ((rx_buff[rx_len - 2] != crcH) || (rx_buff[rx_len - 1] != crcL)) {
         return;
     }
+     // 将数据传递给二氧化碳结构体
     int co2 = ((int)rx_buff[3] << 8) + rx_buff[4];
     printf("co2:%d\n", co2);
     carbon->co2 = co2;
@@ -73,7 +87,7 @@ void Modbus_ReadAll(Carbon_Dioxide *carbon)
 {
     // 使能发送引脚
     HAL_GPIO_WritePin(TR_485_GPIO_Port, TR_485_Pin, GPIO_PIN_SET);
-    // 地址吗 功能码 起始地址(2字节) 读取长度(2字节) crc校验(2字节)
+    // 地址码 功能码 起始地址(2字节) 读取长度(2字节) crc校验(2字节)
     uint8_t buff[] = {0x01, 0x03, 0x00, 0x00, 0x00, 0x03, 0x05, 0xCB};
     HAL_UART_Transmit(&huart2, buff, 8, 1000);
     // 使能接收引脚

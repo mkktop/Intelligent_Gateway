@@ -1,3 +1,4 @@
+//该模块为TCP客户端程序
 #ifndef __TCP_H__
 #define __TCP_H__
 

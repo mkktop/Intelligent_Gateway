@@ -1,3 +1,4 @@
+//该模块为TCP客户端程序
 #include "tcp.h"
 
 // 定义全局变量，表示当前的角色
@@ -18,7 +19,7 @@ CommonStatus TCP_ClientStart(void)
 
     // 2. 根据状态决定要执行的命令
     if (status == SOCK_CLOSED) {
-        // 打开socket，定义好协议TCP，端口9999，根据返回值是否是socket号判断是否成功
+        // 打开socket，定义好协议TCP，端口8888，根据返回值是否是socket号判断是否成功
         uint8_t n = socket(SN, Sn_MR_TCP, 8888, SF_TCP_NODELAY);
 
         if (n == SN) {

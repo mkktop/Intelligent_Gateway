@@ -1,3 +1,4 @@
+//modbus–≠“È≤„
 #ifndef __MODBUS_H__
 #define __MODBUS_H__
 #include "Com_Types.h"

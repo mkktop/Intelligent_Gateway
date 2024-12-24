@@ -1,10 +1,4 @@
-/*
- * @Author: wushengran
- * @Date: 2024-10-15 15:31:37
- * @Description: 
- * 
- * Copyright (c) 2024 by atguigu, All Rights Reserved. 
- */
+//该模块为 debug模块，用于调试，调试信息通过串口输出
 #include "debug.h"
 
 void Debug_Init()

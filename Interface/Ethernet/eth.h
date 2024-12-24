@@ -1,3 +1,4 @@
+//以太网模块，配置了w5500的MAC地址、IP地址、子网掩码、网关地址
 #ifndef __ETH_H__
 #define __ETH_H__
 

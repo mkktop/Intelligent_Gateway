@@ -101,7 +101,7 @@ int main(void)
   MX_I2C1_Init();
   MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
-  printf("Hello World!\r\n");
+  printf("Program startup!\r\n");
   FreeRTOS_Task_Start();
   /* USER CODE END 2 */
 

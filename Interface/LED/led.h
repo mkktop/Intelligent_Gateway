@@ -1,3 +1,4 @@
+//led灯模块，实现了开灯关灯以及翻转
 #ifndef __LED_H__
 #define __LED_H__
 #include "gpio.h"

@@ -1,3 +1,4 @@
+//该模块为 debug模块，用于调试，调试信息通过串口输出
 #ifndef __DEBUG_H
 #define __DEBUG_H
 

@@ -1,3 +1,4 @@
+//该模块为天问51播报程序，需要搭配天问51使用
 #ifndef __VOICE_H__
 #define __VOICE_H__
 

@@ -1,3 +1,4 @@
+//OLED底层驱动
 #include "oled.h"
 
 const uint8_t Int_OLED_Font[][16] =
@@ -341,6 +342,9 @@ void OLED_Clear()
 //     OLED_WriteCmd(cmd_bytes, 3);
 // }
 
+/// @brief 设置指针位置
+/// @param page 
+/// @param column 
 void OLED_SetPointer(uint8_t page, uint8_t column)
 {
     uint8_t cmd_bytes[3];
@@ -350,6 +354,10 @@ void OLED_SetPointer(uint8_t page, uint8_t column)
     OLED_WriteCmd(cmd_bytes, 3);
 }
 
+/// @brief 展示字符串
+/// @param x 
+/// @param y 
+/// @param str 
 void OLED_ShowStr(uint8_t x, uint8_t y, uint8_t *str)
 {
     uint8_t cmd_bytes[2];
@@ -372,7 +380,10 @@ void OLED_ShowStr(uint8_t x, uint8_t y, uint8_t *str)
 }
 
 
-
+/// @brief 展示数字
+/// @param x 
+/// @param y 
+/// @param num 
 void OLED_ShowNum(uint8_t x, uint8_t y,int32_t num)
 {
     // 12345

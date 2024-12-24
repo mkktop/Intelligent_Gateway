@@ -1,3 +1,4 @@
+//该模块定义了公用结构体
 #ifndef __COM_TYPES_H__
 #define __COM_TYPES_H__
 #include "gpio.h"

@@ -1,3 +1,4 @@
+//该模块为ADC按键模块，定义了5个按键
 #ifndef __KEY_H__
 #define __KEY_H__
 #include "adc.h"

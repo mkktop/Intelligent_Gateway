@@ -1,3 +1,10 @@
+//CRC（循环冗余校验）
+
+
+//循环冗余校验（Cyclic Redundancy Check， CRC）
+//是一种根据网络数据包或计算机文件等数据产生简短固定位数校验码的一种信道编码技术，
+//主要用来检测或校验数据传输或者保存后可能出现的错误。
+//它是利用除法及余数的原理来作错误侦测的。
 #include "mb_crc.h"
 
 static const uint8_t aucCRCHi[] = {
@@ -50,6 +57,10 @@ static const uint8_t aucCRCLo[] = {
     0x41, 0x81, 0x80, 0x40
 };
 
+/// @brief 实现了Modbus协议中的CRC16校验计算
+/// @param pFrame 
+/// @param len 
+/// @return 
 uint16_t mb_crc16( uint8_t * pFrame, uint16_t len )
 {
     uint8_t           ucCRCHi = 0xFF;
