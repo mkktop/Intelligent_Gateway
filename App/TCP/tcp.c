@@ -4,7 +4,7 @@
 uint8_t role;
 
 // 定义好要连接的服务器IP和端口号
-uint8_t serverIP[]  = {192, 168, 34, 36};
+uint8_t serverIP[]  = {192, 168, 34, 31};
 uint16_t serverPort = 8888;
 
 // 启动TCP客户端，放到主循环里执行，只有建立连接成功才返回OK

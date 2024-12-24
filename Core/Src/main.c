@@ -29,6 +29,8 @@
 #include "FreeRTOS_Task.h"
 #include "eth.h"
 #include "oled.h"
+#include "modbus.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -100,13 +102,12 @@ int main(void)
   MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
   printf("Hello World!\r\n");
-    FreeRTOS_Task_Start();
+  FreeRTOS_Task_Start();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   //ETH_Init();
-
     while (1) {
     /* USER CODE END WHILE */
 

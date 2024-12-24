@@ -5,7 +5,7 @@ uint16_t bufflen;
 
 Carbon_Dioxide carbon = {
     .temperature = 36,
-    .co2         = 3564,
+    .co2         = 3500,
     .humidity    = 60};
 
 void TCP_Task(void *arg);
@@ -26,6 +26,12 @@ void KEY_Task(void *arg);
 #define KEY_TASK_PRIORITY 5
 TaskHandle_t KEY_Task_Handler;
 
+void Read_Task(void *arg);
+#define READ_TASK_NAME     "Read_Task"
+#define READ_TASK_STACK    128
+#define READ_TASK_PRIORITY 5
+TaskHandle_t Read_Task_Handler;
+
 void FreeRTOS_Task_Start(void)
 {
     // 初始化相关硬件
@@ -36,7 +42,7 @@ void FreeRTOS_Task_Start(void)
     xTaskCreate(TCP_Task, TCP_TASK_NAME, TCP_TASK_STACK, NULL, TCP_TASK_PRIORITY, &TCP_Task_Handler);
     xTaskCreate(TW51_Task, TW51_TASK_NAME, TW51_TASK_STACK, NULL, TW51_TASK_PRIORITY, &TW51_Task_Handler);
     xTaskCreate(KEY_Task, KEY_TASK_NAME, KEY_TASK_STACK, NULL, KEY_TASK_PRIORITY, &KEY_Task_Handler);
-
+    xTaskCreate(Read_Task, READ_TASK_NAME, READ_TASK_STACK, NULL, READ_TASK_PRIORITY, &Read_Task_Handler);
     // 启动调度器
     vTaskStartScheduler();
 }
@@ -106,4 +112,16 @@ void KEY_Task(void *arg)
         }
         vTaskDelay(100);
     }
+}
+
+void Read_Task(void *arg)
+{
+    Modbus_Init();
+    while (1)
+    {
+        Modbus_ReadCO2(&carbon);
+        //Modbus_ReadAll(&carbon);
+        vTaskDelay(10000);
+    }
+    
 }

@@ -231,11 +231,16 @@ void USART3_IRQHandler(void)
 
 /* USER CODE BEGIN 1 */
 extern void TW51_UartCallback(uint16_t size);
+extern void Modbus_UartCallback(uint16_t size);
 void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 {
   if (huart->Instance == USART3)
   {
     TW51_UartCallback(Size);
+  }
+  if (huart->Instance == USART2)
+  {
+    Modbus_UartCallback(Size);
   }
   
 }
